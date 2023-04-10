@@ -6,7 +6,7 @@
 /*   By: csantacr <csantacr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:25:56 by csantacr          #+#    #+#             */
-/*   Updated: 2023/03/23 21:25:06 by csantacr         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:40:17 by csantacr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,30 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void print_item(char* type, char *str)
+static void ft_putstr(char *str)
 {
-	if (ft_strncmp(type, "literal", 8) == 0)
+	while (*str)
+	{
 		write(1, str, 1);
-	else if(ft_strncmp(type, "c", 1))
+		str++;
+	}
+}
+
+void print_item(char type, char *str)
+{
+	printf("\ntipo: %c\n", type);
+	printf("---\n");
+	if (type == 'l') // l = literal
 		write(1, str, 1);
+	else if(type == 'c')
+	{
+		write(1, "c", 1);
+	}
+	else if(type == 's')
+	{
+		ft_putstr(str + 1);
+	}
+	printf("\n///\n");
 }
 
 int	ft_printf(char const *str, ...)
@@ -30,18 +48,20 @@ int	ft_printf(char const *str, ...)
 	//int		len;
 
 	va_start(args, str);
+	printf("args: %c\n", args);
 	while (*str)
 	{
 		if (*str != '%') // si no hay tipo, pasar tipo nulo/literal
-			print_item("literal", str);
+			print_item('l', (char *) str);
 		else // si hay tipo, print
-			print_item(*(str + 1), str);
+			print_item(*(str + 1), (char *) str);
 		str++;
 	}
 	i = 1;
 	while (i)
 	{
-		segundo = va_arg(args, int);
+		segundo = va_arg(args, char);
+		// printf("argumento: %s\n", segundo);
 		i--;
 	}
 	va_end(args);
