@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 #include <stdio.h>
-#include <stdarg.h>
 
 static void ft_putstr(char *str)
 {
@@ -23,7 +22,7 @@ static void ft_putstr(char *str)
 	}
 }
 
-void print_item(char type, char *str)
+void	print_item(char type, char *str)
 {
 	printf("\ntipo: %c\n", type);
 	printf("---\n");
@@ -36,19 +35,20 @@ void print_item(char type, char *str)
 	else if(type == 's')
 	{
 		ft_putstr(str + 1);
+		
 	}
 	printf("\n///\n");
 }
 
 int	ft_printf(char const *str, ...)
 {
-	va_list args;
+	va_list ap;
 	int		i;
 	char	segundo;
 	//int		len;
-
-	va_start(args, str);
-	printf("args: %c\n", args);
+	
+	va_start(ap, str);
+	// printf("args: %c\n", args);
 	while (*str)
 	{
 		if (*str != '%') // si no hay tipo, pasar tipo nulo/literal
@@ -60,11 +60,11 @@ int	ft_printf(char const *str, ...)
 	i = 1;
 	while (i)
 	{
-		segundo = va_arg(args, char);
-		// printf("argumento: %s\n", segundo);
+		segundo = va_arg(ap, char);
+		printf("argumento: %c\n", segundo);
 		i--;
 	}
-	va_end(args);
+	va_end(ap);
 	return (0);
 }
 
