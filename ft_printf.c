@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 static void ft_putstr(char *str)
@@ -29,14 +29,9 @@ void	print_item(char type, char *str)
 	if (type == 'l') // l = literal
 		write(1, str, 1);
 	else if(type == 'c')
-	{
 		write(1, "c", 1);
-	}
 	else if(type == 's')
-	{
 		ft_putstr(str + 1);
-		
-	}
 	printf("\n///\n");
 }
 
