@@ -6,7 +6,7 @@
 /*   By: csantacr <csantacr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:25:56 by csantacr          #+#    #+#             */
-/*   Updated: 2023/04/10 19:40:17 by csantacr         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:34:57 by csantacr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static void ft_putstr(char *str)
 void	print_item(char type, char *str)
 {
 	printf("\ntipo: %c\n", type);
-	printf("---\n");
+	printf("---print_item---\n");
 	if (type == 'l') // l = literal
 		write(1, str, 1);
 	else if(type == 'c')
 		write(1, "c", 1);
 	else if(type == 's')
 		ft_putstr(str + 1);
-	printf("\n///\n");
+	printf("\n///print_item///\n");
 }
 
 int	ft_printf(char const *str, ...)
@@ -55,7 +55,7 @@ int	ft_printf(char const *str, ...)
 	i = 1;
 	while (i)
 	{
-		segundo = va_arg(ap, char);
+		segundo = va_arg(ap, int);
 		printf("argumento: %c\n", segundo);
 		i--;
 	}
@@ -67,7 +67,8 @@ int main(void)
 {
 	char c = 'd';
 	char c2 = 'g';
+	char *str = "hola";
 	
-	ft_printf("abc%cef%c\n", c, c2);
+	ft_printf("ab%sc%cef%c\n", str, c, c2);
 	return (0);
 }
