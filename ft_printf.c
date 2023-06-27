@@ -13,6 +13,11 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
+static void ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 static void ft_putstr(char *str)
 {
 	while (*str)
@@ -22,42 +27,31 @@ static void ft_putstr(char *str)
 	}
 }
 
-void	print_item(char type, char *str)
+void	print_item(char type, char *str, va_list ap)
 {
-	printf("\ntipo: %c\n", type);
-	printf("---print_item---\n");
+	printf("\n---print_item---\n");
+	printf("tipo: %c\n", type);
 	if (type == 'l') // l = literal
 		write(1, str, 1);
 	else if(type == 'c')
-		write(1, "c", 1);
+		ft_putchar(va_arg(ap, int));
 	else if(type == 's')
-		ft_putstr(str + 1);
+		ft_putstr(va_arg(ap, char *));
 	printf("\n///print_item///\n");
 }
 
 int	ft_printf(char const *str, ...)
 {
 	va_list ap;
-	int		i;
-	char	segundo;
-	//int		len;
 	
 	va_start(ap, str);
-	// printf("args: %c\n", args);
 	while (*str)
 	{
 		if (*str != '%') // si no hay tipo, pasar tipo nulo/literal
-			print_item('l', (char *) str);
+			print_item('l', (char *) str, ap);
 		else // si hay tipo, print
-			print_item(*(str + 1), (char *) str);
+			print_item(*(str + 1), (char *) str, ap);
 		str++;
-	}
-	i = 1;
-	while (i)
-	{
-		segundo = va_arg(ap, int);
-		printf("argumento: %c\n", segundo);
-		i--;
 	}
 	va_end(ap);
 	return (0);
