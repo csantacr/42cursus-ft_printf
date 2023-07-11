@@ -24,7 +24,7 @@ int	print_item(char type, char *str, va_list ap, int cc)
 		cc += ft_putchar(va_arg(ap, int));
 	else if (type == 's')
 		cc += ft_putstr(va_arg(ap, char *));
-	else if (type == 'i')
+	else if (type == 'd' || type == 'i')
 		cc += ft_putnbr(va_arg(ap, int));
 	printf("\n///print_item///\n");
 	return (cc);
