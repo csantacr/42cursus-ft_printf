@@ -11,50 +11,42 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 #include <stdio.h>
 
-static void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-static void ft_putstr(char *str)
-{
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
-}
-
-void	print_item(char type, char *str, va_list ap)
+int	print_item(char type, char *str, va_list ap, int cc)
 {
 	printf("\n---print_item---\n");
 	printf("tipo: %c\n", type);
 	if (type == 'l') // l = literal
-		write(1, str, 1);
-	else if(type == 'c')
-		ft_putchar(va_arg(ap, int));
-	else if(type == 's')
-		ft_putstr(va_arg(ap, char *));
+		cc += write(1, str, 1);
+	else if (type == 'c')
+		cc += ft_putchar(va_arg(ap, int));
+	else if (type == 's')
+		cc += ft_putstr(va_arg(ap, char *));
+	else if (type == 'i')
+		cc += ft_putnbr(va_arg(ap, int));
 	printf("\n///print_item///\n");
+	return (cc);
 }
 
 int	ft_printf(char const *str, ...)
 {
-	va_list ap;
-	
+	int		cc;
+	va_list	ap;
+
+	cc = 0;
 	va_start(ap, str);
 	while (*str)
 	{
 		if (*str != '%') // si no hay tipo, pasar tipo nulo/literal
-			print_item('l', (char *) str, ap);
+			print_item('l', (char *) str, ap, cc);
 		else // si hay tipo, print
-			print_item(*(str + 1), (char *) str, ap);
+			print_item(*(str + 1), (char *) str, ap, cc);
 		str++;
 	}
 	va_end(ap);
-	return (0);
+	return (cc);
 }
 
 int main(void)
@@ -63,6 +55,6 @@ int main(void)
 	char c2 = 'g';
 	char *str = "hola";
 	
-	ft_printf("ab%sc%cef%c\n", str, c, c2);
+	printf("return: %d\n", ft_printf("ab%sc%cef%c\n", str, c, c2));
 	return (0);
 }
