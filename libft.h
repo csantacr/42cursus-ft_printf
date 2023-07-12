@@ -22,6 +22,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_putchar(char c);
+int		ft_putnbr(int nb);
+int		ft_putunbr(unsigned int nb);
+int		ft_putstr(char *str);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -45,9 +49,6 @@ char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
