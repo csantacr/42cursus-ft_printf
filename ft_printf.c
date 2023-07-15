@@ -26,11 +26,12 @@
 - % % para imprimir el símbolo del porcentaje.
 */
 
-int	print_item(char type, char *str, va_list ap, int cc)
+int	print_item(char type, char const *str, va_list ap, int cc)
 {
-	printf("\n---print_item---\n");
-	printf("tipo: %c\n", type);
+	//printf("\n---print_item---\n");
+	//printf("tipo: %c\n", type);
 	if (type == 'l') // l = literal
+		//cc += write(1, str, 1);
 		cc += write(1, str, 1);
 	else if (type == 'c')
 		cc += ft_putchar(va_arg(ap, int));
@@ -41,8 +42,8 @@ int	print_item(char type, char *str, va_list ap, int cc)
 	else if (type == 'u')
 		cc += ft_putunbr(va_arg(ap, unsigned int));
 	else if (type == '%')
-		cc += ft_putunbr(va_arg(ap, unsigned int));
-	printf("\n///print_item///\n");
+		cc += ft_putchar('%');
+	//printf("\n///print_item///\n");
 	return (cc);
 }
 
@@ -56,9 +57,15 @@ int	ft_printf(char const *str, ...)
 	while (*str)
 	{
 		if (*str != '%') // si no hay tipo, pasar tipo nulo/literal
-			print_item('l', (char *) str, ap, cc);
+		{
+			print_item('l', str, ap, cc);
+			
+		}
 		else // si hay tipo, print
-			print_item(*str, (char *) str, ap, cc);
+		{
+			print_item(*(str + 1), str, ap, cc);
+			str++;
+		}
 		str++;
 	}
 	va_end(ap);
