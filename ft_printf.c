@@ -31,12 +31,12 @@ int	print_item(char type, const char *str, va_list ap)
 		cc += ft_putnbr(va_arg(ap, int));
 	else if (type == 'u')
 		cc += ft_putunbr(va_arg(ap, unsigned int));
-	else if (type == '%')
-		cc += ft_putchar('%');
 	else if (type == 'x')
 		cc += ft_puthex(va_arg(ap, int), "0123456789abcdef");
 	else if (type == 'X')
 		cc += ft_puthex(va_arg(ap, int), "0123456789ABCDEF");
+	else if (type == '%')
+		cc += ft_putchar('%');
 	//printf("count: %d\n", cc);
 	//printf("\n///print_item///\n");
 	return (cc);
@@ -69,10 +69,12 @@ int main(void)
 	char c = 'd';
 	char c2 = 'g';
 	char *str = "hola";
-	unsigned int un = 4294967294;
-	int max_int = 2147483647;
+	void *ptr;
 
-	printf("ft: %d\n", ft_printf("ab%sc%u%%c%cef%c max_int: %d max_int_hex: %x\n", str, un, c, c2, max_int, max_int));
-	printf("og: %d\n", printf("ab%sc%u%%c%cef%c max_int: %d max_int_hex: %x\n", str, un, c, c2, max_int, max_int));
+	ptr = str;
+	unsigned int un = 4294967294;
+	//int max_int = 2147483647;
+	printf("ft: %d\n", ft_printf("ab%sc%u%%c%cef%c\n", str, un, c, c2));
+	printf("og: %d\n", printf("ab%sc%u%%c%cef%c ptr: %p\n", str, un, c, c2, ptr));
 	return (0);
 }
