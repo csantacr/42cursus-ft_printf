@@ -14,27 +14,22 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC_DIR = src/
-
-OBJ_DIR = obj/
-
 NAME = libftprintf.a
 
-SRC_FILES = 	ft_printf.c\
-				ft_printf2.c
-
-SRC = $(addprefix src/, $(addsuffix .c, $(SRC)))
+SRC =	ft_printf.c\
+		ft_printf_tools/ft_putchar.c\
+		ft_printf_tools/ft_puthex.c\
+		ft_printf_tools/ft_putlonghex.c\
+		ft_printf_tools/ft_putnbr.c\
+		ft_printf_tools/ft_putstr.c\
+		ft_printf_tools/ft_putunbr.c\
 
 OBJ = $(SRC:.c=.o)
 
-LIBFT = 
-
 all: $(NAME)
 
-$(NAME) : $(OBJ) $(LIBFT)
+$(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
-
-$(LIBFT) :
 
 clean:
 	$(RM) $(OBJ)
