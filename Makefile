@@ -19,6 +19,7 @@ NAME = libftprintf.a
 SRC =	ft_printf.c\
 		ft_printf_tools/ft_putchar.c\
 		ft_printf_tools/ft_puthex.c\
+		ft_printf_tools/ft_puthexptr.c\
 		ft_printf_tools/ft_putlonghex.c\
 		ft_printf_tools/ft_putnbr.c\
 		ft_printf_tools/ft_putstr.c\

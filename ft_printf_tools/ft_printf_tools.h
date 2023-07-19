@@ -16,17 +16,12 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-# ifdef __linux__
-#  define NULL_PTR "(nil)"
-# elif APPLE
-#  define NULL_PTR 0
-# endif
-
 int		ft_putchar(char c);
 int		ft_putnbr(int nb);
 int		ft_putunbr(unsigned int nb);
 int		ft_putstr(char *str);
 int		ft_puthex(unsigned int nb, char *base);
-int		ft_putlonghex(unsigned long int nb, char *base);
+int		ft_putlonghex(unsigned long nb, char *base);
+int		ft_puthexptr(unsigned long ptr);
 
 #endif

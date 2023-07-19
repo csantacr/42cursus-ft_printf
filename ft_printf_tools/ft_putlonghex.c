@@ -1,9 +1,9 @@
 #include "ft_printf_tools.h"
 
-int	ft_putlonghex(unsigned long int nb, char *base)
+int	ft_putlonghex(unsigned long nb, char *base)
 {
 	int	cc;
-	int	nb_hex[20];
+	int	nb_hex[40];
 	int	i;
 
 	cc = 0;
