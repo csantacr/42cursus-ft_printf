@@ -1,10 +1,16 @@
-#include "ft_printf_tools.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_puthexptr.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csantacr <csantacr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/19 12:05:44 by csantacr          #+#    #+#             */
+/*   Updated: 2023/07/19 12:11:03 by csantacr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# ifdef __linux__
-#  define NULL_PTR_STR "(nil)"
-# elif __APPLE__
-#  define NULL_PTR_STR "0x0"
-# endif
+#include "ft_printf_tools.h"
 
 int	ft_puthexptr(unsigned long ptr)
 {
