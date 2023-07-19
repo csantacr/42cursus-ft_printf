@@ -15,6 +15,6 @@
 
 # include "ft_printf_tools/ft_printf_tools.h"
 
-int	ft_printf(char const *, ...);
+int	ft_printf(char const *str, ...);
 
 #endif
